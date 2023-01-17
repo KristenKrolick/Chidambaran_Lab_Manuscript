@@ -1,0 +1,6 @@
+#submit_array_jobs -C bismarkArray.sh -A fastq.list -W 40:00 -n 8
+
+R1=VARFILE
+R2=$(echo VARFILE|sed 's/read1_val_1/read2_val_2/g')
+module load bismark/0.22.3
+bismark --multicore 3 --genome <directory containing reference> -o <output directory> -1 $R1 -2 $R2
