@@ -1,0 +1,5 @@
+#submit_array_jobs, created by Mario Pujato was used to process multiple jobs at once on CCHMC's computational cluster.
+#submit_array_jobs -C bismarkArray_dedup.sh -A bam.list -W 30:00 -M 40000
+
+module load bismark/0.22.3
+deduplicate_bismark --bam VARFILE
