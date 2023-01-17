@@ -1,0 +1,3 @@
+module load trimgalore/0.6.6
+
+trim_galore --paired --clip_R1 10 --clip_R2 10 --three_prime_clip_R1 10 --three_prime_clip_R2 10 -o <output dir> <read1> <read2>
