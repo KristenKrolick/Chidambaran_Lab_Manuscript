@@ -1,7 +1,7 @@
 #files were read-in and stored as flat file databases due to memory constraints.
-#Below shows only 4 samples for simplification, and pathway and sample names have been replaced with simulated examples.
-#Note that samples from each time point: preop, pod2, and pow2 would have been read-in separately. 
-For example, all preop read-in and united together, then all pod2 read-in and united together, etc.
+#Below shows only 4 samples for simplification; however, all samples with CPSP phenotype data were read in. 
+#Pathway and sample names have been replaced with simulated examples.
+
 
 setwd("Lab/data/sorted_bams/processbismarkaln_mincov1")
 library(methylKit)
@@ -32,14 +32,5 @@ myobj = methRead(
   dbtype = "tabix",
   dbdir = "methylDB")
 
-#stats were ran on every sample, below is code for the first sample, i.e. the "1" in brackets.
-getMethylationStats(myobj[[1]],plot=TRUE,both.strands=FALSE)
-getCoverageStats(myobj[[1]],plot=TRUE,both.strands=FALSE) 
-
-#Filter samples based on read coverage, discards bases that have more than 99.9th percentile of coverage in each sample to account for PCR bias
-filtered.myobj=filterByCoverage(myobj,lo.count=NULL,lo.perc=NULL,hi.count=NULL,hi.perc=99.9)
-
-#after filtering samples for extreme read coverage, next normalize read coverage distribution between samples
-normalizeCoverage(filtered.myobj)
 
 
