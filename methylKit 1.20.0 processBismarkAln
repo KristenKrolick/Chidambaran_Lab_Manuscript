@@ -1,0 +1,17 @@
+#this is script for processing one sample, a script was submitted for each sample.
+
+#!/bin/env Rscript
+my.file <- file.path("<location to the deduplicated sorted bam>")
+
+library(methylKit)
+objs = processBismarkAln(
+  location = my.file,
+  sample.id = "<sample ID>", 
+  assembly="hg38",
+  save.folder="<location>",
+  save.context="CpG",
+  nolap=FALSE,
+  mincov=1,
+  minqual=20,
+  phred64=FALSE,
+  treatment=1)
