@@ -1,14 +1,14 @@
-#this is script for processing one sample, a script was submitted for each sample.
+#this is script for processing one sample, a script was submitted for each sample. Pathway and sample names have been replaced with simulated examples.
 
 #!/bin/env Rscript
-my.file <- file.path("<location to the deduplicated sorted bam>")
+my.file <- file.path("Lab/data/sorted_bams/sample1_read1_val_1_bismark_bt2_pe.deduplicated.sort.bam")
 
 library(methylKit)
 objs = processBismarkAln(
   location = my.file,
-  sample.id = "<sample ID>", 
+  sample.id = "sample1", 
   assembly="hg38",
-  save.folder="<location>",
+  save.folder="<Lab/data/sorted_bams/processbismarkaln_mincov1>",
   save.context="CpG",
   nolap=FALSE,
   mincov=1,
