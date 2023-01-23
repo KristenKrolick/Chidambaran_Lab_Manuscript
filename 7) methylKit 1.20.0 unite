@@ -1,0 +1,42 @@
+#for simplification, 4 samples are shown below. Really, all samples from each time point, preop, pod2, and pow2, were read-in and united separately, i.e. all samples from preop readin and united together, then all samples from pod2 read-in and united together, etc.
+
+
+setwd("/Lab/data/bam_sorted/processbismarkaln_mincov1/methylDB")
+library(methylKit)
+
+file.list <- list(
+  "/Lab/data/sorted_bams/processbismarkaln_mincov1/methylDB/sample1.txt.bgz",
+  "/Lab/data/sorted_bams/processbismarkaln_mincov1/methylDB/sample2.txt.bgz",
+  "/Lab/data/sorted_bams/processbismarkaln_mincov1/methylDB/sample3.txt.bgz",
+  "/Lab/data/sorted_bams/processbismarkaln_mincov1/methylDB/sample4.txt.bgz"
+  )
+myobj = methRead(
+  file.list,
+  sample.id = list(
+    "sample1",
+    "sample2",
+    "sample3",
+    "sample4"
+  ),
+  assembly = "hg18",
+  treatment = c(
+    1,
+    0,
+    0,
+    1
+  ),
+  context = "CpG",
+  dbtype = "tabix",
+  mincov = 1)
+
+#stats were ran on every sample, below is code for the first sample, i.e. the "1" in brackets.
+getMethylationStats(myobj[[1]],plot=TRUE,both.strands=FALSE)
+getCoverageStats(myobj[[1]],plot=TRUE,both.strands=FALSE) 
+
+#Filter samples based on read coverage, discards bases that have more than 99.9th percentile of coverage in each sample to account for PCR bias
+filtered.myobj=filterByCoverage(myobj,lo.count=NULL,lo.perc=NULL,hi.count=NULL,hi.perc=99.9)
+
+#after filtering samples for extreme read coverage, next normalize read coverage distribution between samples
+normalizeCoverage(filtered.myobj)
+
+-still need to write: the filteredandnormed samples had to be all read in again (or not? I forget), then unite function used.
