@@ -30,7 +30,7 @@ myobj = methRead(
   ),
   context = "CpG",
   dbtype = "tabix",
-  mincov = 1)
+  dbdir = "methylDB")
 
 #stats were ran on every sample, below is code for the first sample, i.e. the "1" in brackets.
 getMethylationStats(myobj[[1]],plot=TRUE,both.strands=FALSE)
