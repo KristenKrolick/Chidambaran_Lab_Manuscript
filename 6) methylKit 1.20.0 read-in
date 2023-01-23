@@ -1,6 +1,7 @@
 #files were read-in and stored as flat file databases due to memory constraints.
 #Below shows only 4 samples for simplification, and pathway and sample names have been replaced with simulated examples.
-#Note that samples from each time point: preop, pod2, and pow2 would have been read-in separately. For example, all preop read-in and united together, then all pod2 read-in and united together, etc.
+#Note that samples from each time point: preop, pod2, and pow2 would have been read-in separately. 
+For example, all preop read-in and united together, then all pod2 read-in and united together, etc.
 
 setwd("Lab/data/sorted_bams/processbismarkaln_mincov1")
 library(methylKit)
