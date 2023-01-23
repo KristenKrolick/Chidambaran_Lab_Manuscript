@@ -3,14 +3,14 @@
 #Pathway and sample names have been replaced with simulated examples.
 
 
-setwd("Lab/data/sorted_bams/processbismarkaln_mincov1")
+setwd("/Lab/data/sorted_bams/processbismarkaln_mincov1")
 library(methylKit)
 
 file.list <- list(
-  "Lab/data/sorted_bams/processbismarkaln_mincov1/sample1_CpG.txt",
-  "Lab/data/sorted_bams/processbismarkaln_mincov1/sample2_CpG.txt",
-  "Lab/data/sorted_bams/processbismarkaln_mincov1/sample3_CpG.txt",
-  "Lab/data/sorted_bams/processbismarkaln_mincov1/sample4_CpG.txt"
+  "/Lab/data/sorted_bams/processbismarkaln_mincov1/sample1_CpG.txt",
+  "/Lab/data/sorted_bams/processbismarkaln_mincov1/sample2_CpG.txt",
+  "/Lab/data/sorted_bams/processbismarkaln_mincov1/sample3_CpG.txt",
+  "/Lab/data/sorted_bams/processbismarkaln_mincov1/sample4_CpG.txt"
   )
 
 myobj = methRead(
