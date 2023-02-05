@@ -1,5 +1,8 @@
 #submit_array_jobs, created by Mario Pujato was used to process multiple jobs at once on CCHMC's computational cluster.
-#submit_array_jobs -C bismarkArray_dedup.sh -A bamMethExtract.list -W 30:00 -M 40000
+#all of the deduplicated bams are made into a list named bamMethExtract.list
 
+#bismarkMethExtract.sh:
 module load bismark/0.22.3
 bismark_methylation_extractor --gzip --bedGraph --cytosine_report --genome_folder /data/path/UCSC_Ref --multicore 3 VARFILE
+
+#submit_array_jobs -C bismarkMethExtract.sh -A bamMethExtract.list -W 30:00 -M 40000
