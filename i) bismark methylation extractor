@@ -2,4 +2,4 @@
 #submit_array_jobs -C bismarkArray_dedup.sh -A bam.list -W 30:00 -M 40000
 
 module load bismark/0.22.3
-bismark_methylation_extractor --gzip --bedGraph --cytosine_report --genome_folder /data/path/UCSC_Ref --multicore 3 $bam
+bismark_methylation_extractor --gzip --bedGraph --cytosine_report --genome_folder /data/path/UCSC_Ref --multicore 3 VARFILE
