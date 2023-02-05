@@ -1,0 +1,2 @@
+module load bismark/0.22.3
+bismark2summary
