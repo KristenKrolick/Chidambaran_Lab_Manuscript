@@ -1,0 +1,3 @@
+module load bismark
+bismark2report
+bismark2summary
