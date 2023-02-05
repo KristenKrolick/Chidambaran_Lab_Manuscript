@@ -1,0 +1,3 @@
+module load bismark/0.22.3
+
+bismark_genome_preparation --genomic_composition --verbose /data/path/UCSC_Ref
