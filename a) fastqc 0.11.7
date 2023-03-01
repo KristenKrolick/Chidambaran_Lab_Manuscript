@@ -1,0 +1,12 @@
+
+#!/bin/bash
+#BSUB -W 80:00
+#BSUB -M 20000
+#BSUB -n 6
+#BSUB -R "span[hosts=1]"
+#BSUB -J "fastqc"
+#BSUB -o /data/path/%J.out
+#BSUB -e /data/path/%J.err
+
+module load fastqc/0.11.7
+for file in *.bam ; do fastqc -o /data/path/fastqc_ofBams -t 6 ${file} ; done
