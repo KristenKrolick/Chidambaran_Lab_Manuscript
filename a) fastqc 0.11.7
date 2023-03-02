@@ -10,3 +10,7 @@
 
 module load fastqc/0.11.7
 for file in *.bam ; do fastqc -o /data/path/fastqc_ofBams -t 6 ${file} ; done
+
+#note to self:
+##I think I ran out of memory, increase next time if using multiple threads again. 
+### having to start over my loop: "for file in OPD*.bam ; do fastqc ..."
