@@ -1,0 +1,54 @@
+library(EpiDISH)
+
+#loading the Ref matrix, provided by Salas et al. 2022 and requires a license approval: https://github.com/immunomethylomics/FlowSorted.BloodExtended.EPIC/blob/main/LICENSE
+load("/data/path/flowsorted.blood.epic/FlowSorted.BloodExtended.EPIC/data/FlowSorted.BloodExtended.EPIC.compTable.rda")
+#I needed to convert the flowsorted.bloodextended.EPIC ref into UCSC Hg38 annoataion, since this is how my own data was (whole-genome EM-seq) 
+##So first, write the Ref out to an Excel file, 
+write.csv(FlowSorted.BloodExtended.EPIC.compTable, "/data/path/flowsorted.blood.epic/FlowSorted.BloodExtended.EPIC.compTable.csv")
+##and inside Excel I used match and sort functions to convert Epic array CpG sites into UCSC Hg38 annotation (illumina MethylationEPICv1.0 b4 manifest file was used to go from illumina CpG annotation to hg37, and then UCSC liftover tool was used to go from Hg37 to Hg38)
+##after converting it inside excel,reading-in 
+FlowSortedEPIC <- read.csv("/data/path/flowsorted.blood.epic/FlowSorted.BloodExtended.EPIC.compTable_withHg38coord_kk.csv")
+#convert the first column into row names
+library(tidyverse)
+FlowSortedEPIC <- FlowSortedEPIC %>% remove_rownames %>% column_to_rownames(var="CpG")
+#now converting it into a matrix, centDHSbloodRef will be my ref matrix
+FlowSortedEPIC.m <- as.matrix(FlowSortedEPIC)
+
+#loading my data
+#need to compile a data matrix of my data where CpG sites are annotated. 
+##To make my bismark.cov files into matrix, using methrix:https://www.bioconductor.org/packages/release/bioc/vignettes/methrix/inst/doc/methrix.html
+library(methrix)
+#Genome of your preference to work with
+library(BSgenome.Hsapiens.UCSC.hg38) 
+#Extract genome wide CpGs from the desired reference genome
+hg38_cpgs <- suppressWarnings(methrix::extract_CPGs(ref_genome = "BSgenome.Hsapiens.UCSC.hg38"))
+#reading-in my bismark.cov files
+bdg_files <- list.files('/data/path/UCSC_align_bams', pattern = 'bismark\\.cov$',full.names = TRUE)
+print(basename(bdg_files))
+meth <- methrix::read_bedgraphs(
+  files = bdg_files,
+  ref_cpgs = hg38_cpgs,
+  pipeline = "Bismark_cov",
+  zero_based = FALSE,
+  collapse_strands = FALSE,
+  n_threads = 20
+)
+meth
+methrix::methrix_report(meth = meth, output_dir = '/data/path/UCSC_align_bams')
+meth_mat_with_loci <- methrix::get_matrix(m = meth, type = "M", add_loci ="TRUE", in_granges = "FALSE")
+head(meth_mat_with_loci)
+#paste together the chr and start columns
+meth_mat_with_loci$CpG <- paste(meth_mat_with_loci$chr, meth_mat_with_loci$start, sep=".")
+library(tidyverse)
+library(methrix)
+setcolorder(meth_mat_with_loci, c("CpG", setdiff(names(meth_mat_with_loci), "CpG")))
+#delete all columns you don't need
+meth_mat_with_loci <- meth_mat_with_loci[ ,`:=`(chr = NULL, start = NULL, strand = NULL)]
+#convert the first column into row names
+meth_mat_with_loci <- meth_mat_with_loci %>% remove_rownames %>% column_to_rownames(var="CpG")
+#convert to a matrix     #meth.m will be my data set:
+meth.m <- as.matrix(meth_mat_with_loci)
+#estimating cell type fractions of whole blood
+BloodFrac.m <- epidish(beta.m = meth.m, ref.m = FlowSortedEPIC.m, method = "RPC")$estF
+write.csv(BloodFrac.m, "/data/path/flowsorted.blood.epic/BloodFractionsUsingEPICRef_6_6_2023kk.csv")
+boxplot(BloodFrac.m)
