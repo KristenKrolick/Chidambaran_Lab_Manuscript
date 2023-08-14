@@ -1,0 +1,18 @@
+#example of 1 file being read into methylkit below (this file happened to be treatment, or CPSP,)
+##file names and locations have been modified from original
+
+#!/bin/env Rscript
+my.file <- file.path("/data/Lab/Sample_read1_val_1_bismark_bt2_pe.deduplicated.sorted.bam")
+
+library(methylKit)
+objs = processBismarkAln(
+  location = my.file,
+  sample.id = "MRS03", 
+  assembly="hg8OPRM-G118",
+  save.folder="/data/Lab/processbismarkaln_CpG",
+  save.context="CpG",
+  nolap=FALSE,
+  mincov=1,
+  minqual=20,
+  phred64=FALSE,
+  treatment=1)
