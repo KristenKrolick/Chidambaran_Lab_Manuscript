@@ -1,0 +1,74 @@
+#script written by Brian Upton
+
+
+#!/bin/bash
+
+# for i in "*_CHH.txt"
+# for i in `find . -name "*_CpG.txt"`
+# for i in `find someDirectoryName1 someDirectoryName2 -name "*_CpG.txt"`
+
+RESULTS_FILENAME=OPRM1_promoterExon1_CpG-Results.txt
+/bin/rm -f ${RESULTS_FILENAME}
+
+header="sample chrBase chr base strand coverage freqC freqT"
+
+echo $header > $RESULTS_FILENAME
+
+totalFilesProcessed=0
+totalRecordsProcessed=0
+totalRecordsMatched=0
+
+PID=$$
+TEMPFILE=doWork-deleteMe-${PID}
+
+# For all matching files.
+for i in `find . -name "*_CpG.txt"`
+do
+  # Process an individual file.
+  cat $i | awk -v fileName="$i" -v tempFile="${TEMPFILE}" -v resultsFileName="${RESULTS_FILENAME}" 'BEGIN { recordsProcessed=0; recordsMatched=0 }  
+                 FNR > 1 {  
+
+		     recordsProcessed = recordsProcessed + 1;
+
+		     chrBase=$1;
+		     chr=$2;
+		     base=$3;
+		     strand=$4;
+		     coverage=$5;
+		     freqC=$6;
+		     freqT=$7
+
+                     if( chr == "NC_000006.12" && base >= 154039208 && base <= 154039804) {
+                        print fileName "  " chrBase "  " chr "  " base "  " strand "  " coverage "  " freqC "  " freqT >> resultsFileName
+			recordsMatched = recordsMatched + 1;
+	             } 
+
+		 }
+	         END { 
+		       print fileName " --> Records Processed: " recordsProcessed ", Records Matched: " recordsMatched;
+                       print recordsProcessed "\n" recordsMatched > tempFile
+         	 } '
+
+  # Get records processed and matched and add it to our running totals.
+  while :
+  do
+    read -r recordsProcessed
+    read -r recordsMatched
+    totalRecordsProcessed=$((totalRecordsProcessed+${recordsProcessed}))
+    totalRecordsMatched=$((totalRecordsMatched+${recordsMatched}))
+    totalFilesProcessed=$((totalFilesProcessed+1))
+    break
+  done < ${TEMPFILE}
+  /bin/rm -f ${TEMPFILE}
+
+done
+
+
+/bin/rm -f ${TEMPFILE}
+
+echo "Total Files   Processed: ${totalFilesProcessed}"
+echo "Total Records Processed: ${totalRecordsProcessed}"
+echo "Total Records   Matched: ${totalRecordsMatched}  (Stored in ${RESULTS_FILENAME})"
+
+exit 0
+
