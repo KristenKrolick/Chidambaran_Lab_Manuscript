@@ -5,4 +5,6 @@
 module load bismark/0.22.3
 bismark_methylation_extractor --bedGraph --cytosine_report --genome_folder /data/path/UCSC_Ref --multicore 3 VARFILE
 
+##note if non CpG calls were needed as well, "--comprehensive" option was inserted above
+
 #submit_array_jobs -C bismarkMethExtract.sh -A bamMethExtract.list -W 30:00 -M 20000 -n 8
