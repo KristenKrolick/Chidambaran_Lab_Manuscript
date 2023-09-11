@@ -4,6 +4,10 @@ trim_galore --paired --clip_R1 10 --clip_R2 10 --three_prime_clip_R1 10 --three_
 
 
 #OR IF DOING ON MULTIPLE FILES AT ONCE, USE BELOW SCRIPT:
+#submit_array_jobs, created by Mario Pujato, was used to process multiple jobs at once on CCHMC's computational cluster.
+#submit_array_jobs -C TrimArray.sh -A fastq.list -M 60000 -W 20:00 -n 8
+##fastq.list contains all of the read1 files
+##TimArray.sh is below script:
 
 R1=VARFILE
 R2=$(echo VARFILE|sed 's/read1/read2/g')
