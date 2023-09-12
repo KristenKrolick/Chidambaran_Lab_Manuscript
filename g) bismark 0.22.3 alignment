@@ -5,3 +5,5 @@ R1=VARFILE
 R2=$(echo VARFILE|sed 's/read1_val_1/read2_val_2/g')
 module load bismark/0.22.3
 bismark --multicore 3 --genome <directory containing reference> -o <output directory> -1 $R1 -2 $R2
+
+# if filenames are named so that they have a different index everytime in between read1 and val_1, you can replace the R2 code above with "R2=$(echo VARFILE|sed 's/read1/read2/g ; s/_val_1/_val_2/g')"
