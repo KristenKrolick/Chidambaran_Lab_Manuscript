@@ -1,5 +1,5 @@
 #when inside the directory containing all files you want to perform multiqc on
 #usually perform without "--interactive", but might want
  module load R/4.2.1
- module load python3
+ module load python3/3.6.3
  multiqc . --interactive
