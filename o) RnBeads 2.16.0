@@ -29,6 +29,397 @@ $region.subsegments.types
 NULL
 
 $identifiers.column
+[1] "WGMS_filename"
+
+$points.category
+[1] 16 17  3 15  4  7  8
+
+$colors.category
+[1] "#1B9E77" "#D95F02" "#7570B3" "#E7298A" "#66A61E" "#E6AB02" "#A6761D" "#666666"
+
+$colors.gradient
+[1] "#132B43" "#56B1F7"
+
+$min.group.size
+[1] 2
+
+$max.group.count
+[1] 20
+
+$gz.large.files
+[1] FALSE
+
+$strand.specific
+[1] FALSE
+
+$replicate.id.column
+NULL
+
+$import
+[1] TRUE
+
+$import.default.data.type
+[1] "bed.dir"
+
+$import.table.separator
+[1] ","
+
+$import.bed.style
+[1] "bismarkCov"
+
+$import.bed.columns
+     chr    start      end   strand     meth coverage        c        t 
+       1        2       NA       NA       NA       NA        5        6 
+
+$import.bed.frame.shift
+[1] 1
+
+$import.bed.test
+[1] TRUE
+
+$import.bed.test.only
+[1] FALSE
+
+$import.skip.object.check
+[1] FALSE
+
+$import.idat.chunk.size
+NULL
+
+$import.idat.platform
+[1] "auto"
+
+$import.sex.prediction
+[1] TRUE
+
+$import.dpval.method
+[1] "controls"
+
+$qc
+[1] FALSE
+
+$qc.boxplots
+[1] TRUE
+
+$qc.barplots
+[1] TRUE
+
+$qc.negative.boxplot
+[1] TRUE
+
+$qc.snp.heatmap
+[1] TRUE
+
+$qc.snp.barplot
+[1] FALSE
+
+$qc.snp.boxplot
+[1] FALSE
+
+$qc.snp.distances
+[1] TRUE
+
+$qc.snp.purity
+[1] FALSE
+
+$qc.coverage.plots
+[1] FALSE
+
+$qc.coverage.threshold.plot
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$qc.coverage.histograms
+[1] TRUE
+
+$qc.coverage.violins
+[1] TRUE
+
+$qc.sample.batch.size
+[1] 500
+
+$qc.cnv
+[1] FALSE
+
+$qc.cnv.refbased
+[1] FALSE
+
+$preprocessing
+[1] TRUE
+
+$normalization
+NULL
+
+$normalization.method
+[1] "wm.dasen"
+
+$normalization.background.method
+[1] "none"
+
+$normalization.plot.shifts
+[1] TRUE
+
+$filtering.whitelist
+NULL
+
+$filtering.blacklist
+NULL
+
+$filtering.context.removal
+[1] "CC"    "CAG"   "CAH"   "CTG"   "CTH"   "Other"
+
+$filtering.snp
+[1] "any"
+
+$filtering.cross.reactive
+[1] FALSE
+
+$filtering.greedycut
+[1] FALSE
+
+$filtering.greedycut.pvalue.threshold
+[1] 0.05
+
+$filtering.greedycut.rc.ties
+[1] "row"
+
+$filtering.sex.chromosomes.removal
+[1] TRUE
+
+$filtering.missing.value.quantile
+[1] 0.9
+
+$filtering.coverage.threshold
+[1] 15
+
+$filtering.low.coverage.masking
+[1] TRUE
+
+$filtering.high.coverage.outliers
+[1] FALSE
+
+$filtering.deviation.threshold
+[1] 0
+
+$imputation.method
+[1] "none"
+
+$inference
+[1] FALSE
+
+$inference.genome.methylation
+[1] "Genome-wide methylation"
+
+$inference.targets.sva
+character(0)
+
+$inference.reference.methylome.column
+NULL
+
+$inference.max.cell.type.markers
+[1] 50000
+
+$inference.top.cell.type.markers
+[1] 500
+
+$inference.sva.num.method
+[1] "leek"
+
+$inference.age.column
+[1] "age"
+
+$inference.age.prediction
+[1] TRUE
+
+$inference.age.prediction.training
+[1] FALSE
+
+$inference.age.prediction.predictor
+NULL
+
+$inference.age.prediction.cv
+[1] FALSE
+
+$inference.immune.cells
+[1] TRUE
+
+$exploratory
+[1] FALSE
+
+$exploratory.columns
+NULL
+
+$exploratory.top.dimensions
+[1] 0
+
+$exploratory.principal.components
+[1] 8
+
+$exploratory.correlation.pvalue.threshold
+[1] 0.01
+
+$exploratory.correlation.permutations
+[1] 10000
+
+$exploratory.correlation.qc
+[1] TRUE
+
+$exploratory.beta.distribution
+[1] TRUE
+
+$exploratory.intersample
+[1] TRUE
+
+$exploratory.deviation.plots
+[1] FALSE
+
+$exploratory.clustering
+[1] "all"
+
+$exploratory.clustering.top.sites
+[1] 1000
+
+$exploratory.clustering.heatmaps.pdf
+[1] FALSE
+
+$exploratory.region.profiles
+[1] "genes"      "promoters"  "cpgislands"
+
+$exploratory.gene.symbols
+NULL
+
+$exploratory.custom.loci.bed
+NULL
+
+$differential
+[1] TRUE
+
+$differential.site.test.method
+[1] "limma"
+
+$differential.variability
+[1] FALSE
+
+$differential.variability.method
+[1] "diffVar"
+
+$differential.permutations
+[1] 0
+
+$differential.comparison.columns
+[1] "Updates CPSP2023_VCfinal"
+
+$differential.comparison.columns.all.pairwise
+NULL
+
+$covariate.adjustment.columns
+[1] "age.x"              "sex.x"              "race.x"             "CD4_TOTAL"          "CD8_TOTAL"          "GRANULOCYTES_TOTAL"
+[7] "B_TOTAL"            "NK_3"               "Mono_3"            
+
+$differential.adjustment.sva
+[1] FALSE
+
+$differential.adjustment.celltype
+[1] FALSE
+
+$differential.enrichment.go
+[1] FALSE
+
+$differential.enrichment.lola
+[1] FALSE
+
+$differential.enrichment.lola.dbs
+[1] "${LOLACore}"
+
+$differential.report.sites
+[1] TRUE
+
+$export.to.bed
+[1] FALSE
+
+$export.to.trackhub
+NULL
+
+$export.to.csv
+[1] TRUE
+
+$export.to.ewasher
+[1] FALSE
+
+$export.types
+[1] "sites"      "tiling"     "genes"      "promoters"  "cpgislands"
+
+$colors.meth
+[1] "#AD0021" "#909090" "#39278C"
+
+$colors.3.gradient
+[1] "#832424" "#FFFFFF" "#3A3A98"
+
+$logging.memory
+[1] TRUE
+
+$logging.disk
+[1] FALSE
+
+$logging.exit.on.error
+[1] FALSE
+
+$distribution.subsample
+[1] 1000000
+
+$disk.dump.big.matrices
+[1] TRUE
+
+$disk.dump.bigff
+[1] TRUE
+
+$disk.dump.bigff.finalizer
+[1] "delete"
+
+$enforce.memory.management
+[1] FALSE
+
+$enforce.destroy.disk.dumps
+[1] FALSE
+
+
+
+
+
+
+
+
+#OLD
+$analysis.name
+[1] "RnBeads Analysis"
+
+$logging
+[1] TRUE
+
+$email
+NULL
+
+$assembly
+[1] "hg38"
+
+$columns.pairing
+NULL
+
+$analyze.sites
+[1] TRUE
+
+$region.types
+[1] "tiling"     "genes"      "promoters"  "cpgislands"
+
+$region.aggregation
+[1] "mean"
+
+$region.subsegments
+[1] 0
+
+$region.subsegments.types
+NULL
+
+$identifiers.column
 [1] "sample"
 
 $points.category
