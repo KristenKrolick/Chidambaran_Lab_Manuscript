@@ -186,7 +186,7 @@ $filtering.sex.chromosomes.removal
 [1] TRUE
 
 $filtering.missing.value.quantile
-[1] 0.9
+[1] 1
 
 $filtering.coverage.threshold
 [1] 15
@@ -243,10 +243,17 @@ $inference.immune.cells
 [1] TRUE
 
 $exploratory
-[1] FALSE
+[1] TRUE
 
 $exploratory.columns
-NULL
+ [1] "site"               "batch"              "weight.x"           "sex.x"             
+ [5] "age.x"              "race.x"             "CD4_TOTAL"          "CD8_TOTAL"         
+ [9] "GRANULOCYTES_TOTAL" "B_TOTAL"            "Bas_3"              "Bmem_3"            
+[13] "Bnv_3"              "CD4mem_3"           "CD4nv_3"            "CD8mem_3"          
+[17] "CD8nv_3"            "Eos_3"              "Mono_3"             "Neu_3"             
+[21] "NK_3"               "Treg_3"             "surg_type.x"        "surg_dur_min_VC.x" 
+[25] "preop_fdi_score"    "preop_ppst_total.x" "overallAUC"         "preop_pd_q2.x"     
+[29] "preop_pd_q3.x"      "preop_pd_total.y"  
 
 $exploratory.top.dimensions
 [1] 0
@@ -312,8 +319,9 @@ $differential.comparison.columns.all.pairwise
 NULL
 
 $covariate.adjustment.columns
-[1] "age.x"              "sex.x"              "race.x"             "B_TOTAL"            "CD4_TOTAL"          "CD8_TOTAL"         
-[7] "GRANULOCYTES_TOTAL" "NK_3"               "Mono_3"            
+[1] "age.x"              "sex.x"              "race.x"             "CD4_TOTAL"         
+[5] "CD8_TOTAL"          "GRANULOCYTES_TOTAL" "B_TOTAL"            "Mono_3"            
+[9] "NK_3"              
 
 $differential.adjustment.sva
 [1] FALSE
