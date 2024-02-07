@@ -186,7 +186,7 @@ $filtering.sex.chromosomes.removal
 [1] TRUE
 
 $filtering.missing.value.quantile
-[1] 1
+[1] 0.1
 
 $filtering.coverage.threshold
 [1] 7
